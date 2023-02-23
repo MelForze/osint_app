@@ -9,5 +9,6 @@ This little script performs the following functions:
 
 In the next updates
 
+0. To improve the code
 1. Progress bar
 2. Output Nmap
