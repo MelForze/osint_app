@@ -8,15 +8,17 @@ from headers_check import check_headers
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-s", "-scope", type=str,
-                    help="Домены в скоупе:", required=True)
+                    help="Domains in scoope:", required=True)
 parser.add_argument("-sub", '-subfinder', type=str,
-                    help="Поиск поддоменов", required=False, default="no")
-parser.add_argument("-f", "-ffuf", type=str, help="Вкл ffuf на домены",
+                    help="Search neighboring domains", required=False, default="no")
+parser.add_argument("-f", "-ffuf", type=str, help="switch on ffuf ",
                     required=False, default="no")
-parser.add_argument("-p", "-port", type=int, help="Порт для ffuf",
+parser.add_argument("-p", "-port", type=int, help="port ffuf",
                     required=False, default=443)
-parser.add_argument("-r", "-rate", type=int, help="Количество запросов для ffuf",
+parser.add_argument("-r", "-rate", type=int, help="rate for  ffuf",
                     required=False, default=150)
+parser.add_argument("-w", "-worlists", type=str,
+                    help="Path to wordlists for ffuf")
 
 if __name__ == '__main__':
     start_prog = time.time()
@@ -51,11 +53,13 @@ if __name__ == '__main__':
             headers = domain+","+str(args.p)
             check_headers(headers)
     if args.f != 'no':
-        for domain in scope:
-            f_data.append(domain+","+str(args.p)+","+str(args.r))
-        print(f_data)
-        with multiprocessing.Pool(multiprocessing.cpu_count()) as process:
-            process.map(ffuf.ffuf, f_data)
-        print("ffuf finished: ")  # , '%.2f' % end, " seconds", '\n')
+        if args.w != '':
+            for domain in scope:
+                f_data.append(domain+","+str(args.p)+"," +
+                              str(args.r)+","+str(args.w))
+                print(f_data)
+                with multiprocessing.Pool(multiprocessing.cpu_count()) as process:
+                    process.map(ffuf.ffuf, f_data)
+                print("ffuf finished: ")  # , '%.2f' % end, " seconds", '\n')
     end_prog = time.time() - start_prog
     print("Program finished: ", '%.2f' % end_prog, " seconds", '\n')
