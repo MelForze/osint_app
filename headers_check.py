@@ -46,8 +46,3 @@ def check_headers(scope):
     for header in head_not_founded:
         print(f'{header}')
     print()
-
-
-if __name__ == '__main__':
-    scope = ",443"
-    check_headers(scope)

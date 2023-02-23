@@ -41,3 +41,4 @@ def subfinder(scope):
         print("Domain: " + scope + " complete!")
     except:
         print("subfinder broke or not installed")
+        print("Please check your system")

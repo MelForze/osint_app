@@ -4,9 +4,7 @@ import subprocess
 def ffuf(f_data):
     try:
         f_data = f_data.split(',')
-        # print(f_data)
         scope, port, rate = f_data
-        # print(scope, port, rate)
         scope_h = scope.replace(".", "_")
         if port == '443':
             subprocess.check_output(

@@ -6,7 +6,6 @@ import ffuf as ffuf
 import wildcard as wildcard
 from headers_check import check_headers
 
-# check string
 parser = argparse.ArgumentParser()
 parser.add_argument("-s", "-scope", type=str,
                     help="Домены в скоупе:", required=True)

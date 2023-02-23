@@ -30,9 +30,6 @@ def check_wildcard(scope):
                             cert = ssock.getpeercert()
                             serial_number = cert.get("serialNumber")
                             certificates[hostname] = serial_number
-                            # print("Домен:", hostname)
-                            # print("Серийный номер сертификата:", serial_number)
-                            # print()
                 except:
                     pass
     for domain in scope:
