@@ -1,3 +1,0 @@
-private.adr.ru,185.200.16.79
-mail.adr.ru,178.236.128.66
-pay.adr.ru,185.200.16.79
