@@ -24,12 +24,13 @@ def check_wildcard(scope):
                 h_line = line.strip().split(',')
                 hostname = h_line[0]
                 context = ssl.create_default_context()
+                context.check_hostname = False
                 try:
                     with socket.create_connection((hostname, 443), 1) as sock:
-                        with context.wrap_socket(sock, server_hostname=hostname) as ssock:
-                            cert = ssock.getpeercert()
-                            serial_number = cert.get("serialNumber")
-                            certificates[hostname] = serial_number
+                            with context.wrap_socket(sock, server_hostname=hostname) as ssock:
+                                cert = ssock.getpeercert()
+                                serial_number = cert.get("serialNumber")
+                                certificates[hostname] = serial_number
                 except:
                     pass
     for domain in scope:

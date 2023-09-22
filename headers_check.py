@@ -17,7 +17,7 @@ def check_headers(scope):
     else:
         url = f'https://{domain}:{port}/'
     print(f"URL: {url}")
-    request = requests.get(url)
+    request = requests.get(url, verify=False)
     headers = request.headers
     for header in Bad_headers:
         for header_r in headers:

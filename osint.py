@@ -48,13 +48,13 @@ if __name__ == '__main__':
             process.map(gobuster.gobuster, unique_domain)
         print("Subfinder finished", '\n')
         print("Wildcard check start!")
-        wildcard.check_wildcard(scope)
-        print()
-        for domain in scope:
-            number_domain += 1
-            print(f"{number_domain}) Domain - {domain}")
-            headers = domain+","+str(args.p)
-            check_headers(headers)
+    wildcard.check_wildcard(scope)
+    print()
+    for domain in scope:
+        number_domain += 1
+        print(f"{number_domain}) Domain - {domain}")
+        headers = domain+","+str(args.p)
+        check_headers(headers)
     if args.f != 'no':
         if args.w != '':
             for domain in scope:
